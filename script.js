@@ -151,7 +151,7 @@ function editRecord(index)
 function updateEdit()
 {
     document.getElementById("submit").textContent="Submit";
-    if (!document.getElementById("cancel"))
+    if (document.getElementById("cancel"))
     {
         document.getElementById("cancel").remove();  
     }
