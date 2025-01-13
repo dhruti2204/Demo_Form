@@ -22,9 +22,7 @@ states.forEach(state => {
 //event listener and according to that city display
 stateContainer.addEventListener("change",function(){
     const selectedState = stateContainer.value
-
     cityContainer.innerHTML = `<option value="">--Select a City--</option>`;
-
     if(selectedState){
         cities[selectedState].forEach(city => {
             const option = document.createElement("option");
@@ -37,9 +35,9 @@ stateContainer.addEventListener("change",function(){
 
 //stored the record
 const form = document.querySelector("form");
-let Data=[{"name":"Dhruti" , "email":"dhruti@gmail.com" , "age":"22" , "gender":"female" , "hobby":"playing" , "state":"Gujarat" , "city":"Surat"}];
+let Data=[{"name":"Dhruti" , "email":"dhruti@gmail.com" , "age":"22" , "gender":"female" , "hobby":["playing"] , "state":"Gujarat" , "city":"Surat"}];
 form.addEventListener("submit", (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -74,7 +72,6 @@ form.addEventListener("submit", (event) => {
     {
         FormData = {name,email,gender,hobby,age,state,city,createdTime};
         Data.push(FormData);
-        console.log(Data);
         form.reset();
         displayTable();
     }
@@ -100,8 +97,7 @@ function displayTable(filter = "")
             <td>${item.state}</td>
             <td>${item.city}</td>
             <td><button id=remove onclick="deleteRecord(${index})">Delete</button></td>
-            <td><button id=edit onclick="editRecord(${index})">Edit</button></td>
-            `
+            <td><button id=edit onclick="editRecord(${index})">Edit</button></td>`
             container.appendChild(row);
         };
     });
@@ -121,12 +117,11 @@ function editRecord(index)
     {
         genderatio.checked = true;
     };
-    document.querySelectorAll("input[name='hobby']:checked").forEach(hobby => {
-        const hobbyCheckbox = document.getElementById(record.hobby);
-        if (hobbyCheckbox) 
-        {
-            hobbyCheckbox.checked = true; 
-        };
+    record.hobby.forEach(hobby => {
+        const hobbyCheckbox = document.getElementById(hobby);
+        if (hobbyCheckbox) {
+            hobbyCheckbox.checked = true;
+        }
     });
     document.getElementById("state").value = record.state;
     stateContainer.dispatchEvent(new Event("change"))
@@ -147,6 +142,7 @@ function editRecord(index)
         cancelButton.onclick = cancelEdit;
         document.getElementById("dataform").appendChild(cancelButton);  
 
+        //call the deleteRecord function to delete the record
         deleteRecord(index);
     }
 }
@@ -155,7 +151,10 @@ function editRecord(index)
 function updateEdit()
 {
     document.getElementById("submit").textContent="Submit";
-    document.getElementById("cancel").remove(); 
+    if (!document.getElementById("cancel"))
+    {
+        document.getElementById("cancel").remove();  
+    }
 };
 
 //clear the form when click on cancel
@@ -179,8 +178,7 @@ const dropDown = document.getElementById("sort");
 for(i = 0;i<arr3.length;i++)
 {
     const op = document.createElement("option");
-    op.innerHTML = `
-    ${arr3[i]}`  
+    op.innerHTML = `${arr3[i]}`  
     dropDown.appendChild(op);
 };
 dropDown.addEventListener("change",function(){
@@ -209,9 +207,9 @@ function sortFunction(Data,key)
             if(x>y){return 1;}
             if(x<y){return -1;}
             return 0;
-        }) 
-    }
-}
+        });
+    };
+};
 
 //search the data by name
 search.addEventListener("input", () => {
