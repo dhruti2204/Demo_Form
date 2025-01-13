@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="dataform">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="gender">Gender:</label>
+        <input type="radio"  id="male" name="gender" value="male"> Male
+        <input type="radio"  id="female" name="gender" value="female"> Female<br><br>
+
+        <label for="hobby">Hobbies:</label>
+        <input type="checkbox" id="reading" name="hobby">Reading
+        <input type="checkbox" id="dancing" name="hobby">Dancing
+        <input type="checkbox" id="playing" name="hobby">playing<br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1"><br><br>
+
+        <label for="state">Select State:</label>
+        <select id="state">
+            <option value="">--Select a State--</option>
+        </select><br><br>
+    
+        <label for="city">Select City:</label>
+        <select id="city">
+            <option value="">--Select a City--</option>
+        </select><br><br>
+
+        <button type="submit" id="submit" name="submit">Submit</button>
+    </form>
+    <br><br>
+    <label for="dropdown">Sort</label>
+    <select id="sort">
+        <option value="">--Select a Option--</option>
+    </select>
+    <label for="search">Search</label>
+    <input type="text" id="search" name="search">
+   <br><br>
+
+     <div id="table-container"> 
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Registered Time</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Hobbies</th>
+                    <th>Age</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Delete</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            
+           <tbody id="dynamic-table">
+
+           </tbody>
+        </table>
+     
+    <script src="script.js"></script>
+</body>
+</html>
